@@ -18,6 +18,14 @@ EOF
 
 # this bucket is mean to be public!
 resource "aws_s3_bucket" "data" {
+  lifecycle_rule {
+    id      = "None"
+    prefix  = "None/"
+    enabled = true
+    expiration {
+      days = 10
+    }
+ }
   # bucket is public
   # bucket is not encrypted
   bucket        = "${local.resource_prefix.value}-data"
